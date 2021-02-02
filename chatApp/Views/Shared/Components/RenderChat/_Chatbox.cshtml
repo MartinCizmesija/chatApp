@@ -1,0 +1,10 @@
+﻿@model chatApp.Models.Chat
+
+<div class="container">
+    @foreach (var message in Model.chatLog)
+    {
+        <a class="row"> @message.Item1 @message.Item2</a>
+    }
+</div>
+
+<!-- <meta http-equiv="refresh" content="100" />    -->

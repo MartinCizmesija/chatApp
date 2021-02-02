@@ -1,0 +1,55 @@
+﻿@model chatApp.Models.Chat
+@using chatApp.Components
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <a> user 2 </a>
+        </div>
+        <div class="col-sm-3">
+            <a> current protocol: @Model.protocol </a>
+        </div>
+        @if (Model.protocol == "polling")
+        {
+            <div class="col-sm-3">
+                <form asp-action="get2">
+                    <input type="submit" value="get message" />
+                </form>
+            </div>
+        }
+        <form class="form-group col-sm-4 float-right form-inline">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div><span asp-validation-for="protocol" class="text-danger"></span></div>
+            <select class="form-control" asp-for="protocol" asp-items="ViewBag.Protocol">
+                <option disabled selected value="">Set protocol</option>
+            </select>
+            <div>
+                <input type="submit" value="set" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @await Component.InvokeAsync("RenderChat", new Chat(Model.protocol, Model.chatLog))
+</div>
+
+
+<ul class="navbar-nav flexing" id="bottom">
+    <li class="nav-item">
+        <form asp-action="send2">
+            <p>
+                <input type="text" asp-for="text">
+                <input type="submit" value="send" />
+            </p>
+        </form>
+    </li>
+</ul>
+
+<style>
+    #bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+</style>

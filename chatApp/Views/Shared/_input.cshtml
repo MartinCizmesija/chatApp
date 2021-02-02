@@ -1,0 +1,21 @@
+﻿@model chatApp.Models.Chat
+
+<ul class="navbar-nav flexing" id="bottom">
+    <li class="nav-item">
+        <form asp-action="send1">
+            <p>
+                <input type="text" asp-for="text">
+                <input type="submit" value="send" />
+            </p>
+        </form>
+    </li>
+</ul>
+
+
+<style>
+    #bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+</style>
